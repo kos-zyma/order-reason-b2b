@@ -1,0 +1,41 @@
+<?php
+
+/** @var $block \Magento\Framework\View\Element\Template */
+
+/** @var \Space48\OrderReason\viewModel\Reason $reason */
+$reason = $block->getData('viewModel');
+
+?>
+<form class="form form-edit-reason" method="post" id="reason-edit-form"
+      action="<?= $block->escapeUrl($block->getUrl('*/*/editPost', ['id' => $reason->getId()])) ?>"
+      data-mage-init='{"validation":{}}'>
+    <input type="hidden" name="reason_id" value="<?= $reason->getId() ?>">
+    <?= $block->getBlockHtml('formkey') ?>
+
+    <fieldset class="fieldset info">
+        <div class="field reason-name _required">
+            <label class="label" for="reason_name">
+                <span><?= $block->escapeHtml(__('Order Reason')) ?></span>
+            </label>
+            <div class="control">
+                <textarea maxlength="255" name="reason" id="reason"
+                       title="<?= $block->escapeHtml(__('Order Reason')) ?>"
+                       data-async-is-valid="true"
+                       data-validate="{required:true}"
+                       class="input-text required-entry"><?= $block->escapeHtml($reason->getReason()) ?></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="secondary">
+            <a class="action cancel" href="<?= $block->escapeUrl($block->getUrl('reasons')) ?>">
+                <span><?= $block->escapeHtml(__('Cancel')) ?></span>
+            </a>
+        </div>
+        <div class="primary">
+            <button type="submit" class="action save primary" title="<?= $block->escapeHtml(__('Save Order Reason')) ?>">
+                <span><?= $block->escapeHtml(__('Save Order Reason')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">reasons_listing.reasons_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>reason_columns</spinner>
+        <deps>
+            <dep>reasons_listing.reasons_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="reasons_listing_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">role_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Space48\OrderReason\Ui\DataProvider\Roles\DataProvider" name="reasons_listing_data_source">
+            <settings>
+                <primaryFieldName>role_id</primaryFieldName>
+                <requestFieldName>role_id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="reason_columns" component="uiB2bListing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="table_css_class" xsi:type="string">data table</item>
+            </item>
+        </argument>
+        <settings>
+            <childDefaults>
+                <param name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">reasons_listing.reasonlisting.listing_top.bookmarks</item>
+                    <item name="root" xsi:type="string">columns.${ $.index }</item>
+                    <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                </param>
+            </childDefaults>
+            <storageConfig>
+                <namespace>current</namespace>
+                <provider>reasons_listing.reasons_listing.listing_top.bookmarks</provider>
+            </storageConfig>
+        </settings>
+        <column name="id" component="Magento_Ui/js/grid/columns/column">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">ID</label>
+                <sortable>false</sortable>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="reason" component="Magento_Ui/js/grid/columns/column">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <fieldClass>
+                    <class name="long-text-field">true</class>
+                </fieldClass>
+                <label translate="true">Reason</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Space48\OrderReason\Ui\Component\Listing\Column\Actions" component="Space48_OrderReason/js/grid/columns/actions">
+            <settings>
+                <fieldClass>
+                    <class name="col actions">true</class>
+                </fieldClass>
+                <label>Actions</label>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+    <container name="listing_top">
+        <paging name="listing_paging" component="uiB2bPaging">
+            <settings>
+                <selectProvider>reasons_listing.reasons_listing.reason_columns.ids</selectProvider>
+                <storageConfig>
+                    <namespace>current.paging</namespace>
+                    <provider>reasons_listing.reasons_listing.listing_top.bookmarks</provider>
+                </storageConfig>
+            </settings>
+        </paging>
+    </container>
+</listing>

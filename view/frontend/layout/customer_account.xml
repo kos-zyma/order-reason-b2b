@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <body>
+        <referenceBlock name="customer-account-navigation-company-roles-link" remove="true"/>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Company\Block\Link\Current" ifconfig="btob/website_configuration/company_active" name="customer-account-navigation-order-reasons">
+                <arguments>
+                    <argument name="path" xsi:type="string">reasons</argument>
+                    <argument name="label" translate="true" xsi:type="string">Order Reasons</argument>
+                    <argument name="resource" xsi:type="string">Space48_OrderReason::reasons_view</argument>
+                    <argument name="sortOrder" xsi:type="number">110</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

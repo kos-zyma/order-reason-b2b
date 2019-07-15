@@ -1,0 +1,13 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+?>
+
+<p><?= $block->escapeHtml(__('In this section you can add, edit and manage order reasons, associated with your account.')) ?></p>
+
+<div class="actions">
+	<a href="<?= $block->escapeUrl($block->getUrl('reasons/reason/add')) ?>" class="action primary">
+        <svg>
+            <use xlink:href="<?php echo $block->getViewFileUrl('images/icons-sprite.svg#add'); ?>"></use>
+        </svg>
+        <?= $block->escapeHtml(__('Add New Reason')) ?></a>
+</div>
